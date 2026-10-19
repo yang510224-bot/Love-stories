@@ -1,4 +1,6 @@
 'use strict';
+const voiceTest=require('./eleven-test');
+void voiceTest.run();
 if(process.env.ELEVEN_PREFLIGHT_ENABLED==='1') void require('./eleven-preflight').preflight();
 void require('./music-preflight').preflight();
 void require('./music-smoke').run();
@@ -11,6 +13,7 @@ const instructions=prompt+'\n\n'+core;
 const rate=new Map();
 function send(res,status,obj){res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Access-Control-Allow-Origin':FRONTEND,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(JSON.stringify(obj))}
 http.createServer(async(req,res)=>{
+ if(voiceTest.serve(req,res))return;
  if(req.method==='OPTIONS'){res.writeHead(204,{'Access-Control-Allow-Origin':FRONTEND,'Access-Control-Allow-Methods':'POST, OPTIONS','Access-Control-Allow-Headers':'Content-Type'});return res.end()}
  if(req.url==='/health')return send(res,200,{ok:true,configured:!!process.env.OPENAI_API_KEY});
  if(req.method!=='POST'||req.url!=='/api/respond')return send(res,404,{error:'not_found'});
