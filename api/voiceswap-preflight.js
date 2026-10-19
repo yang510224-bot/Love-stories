@@ -1,7 +1,7 @@
 'use strict';
 // Official /api/openapi v1.4.2: bootstrap exchange then read public v2v models.
 // No audio, generation, pitch-detection, training, purchase or download calls.
-async function preflight({key=process.env.VOICE_SWAP_API_KEY,request=fetch,log=console.log}={}) {
+async function preflight({key=process.env.VOICE_SWAP_API_KEY||process.env.Voice_swap_api_key,request=fetch,log=console.log}={}) {
  const r={event:'voiceswap_preflight_v1',configured:Boolean(key),generationEnabled:false,quotaVerified:false};
  try {
   if(!key)return r;
