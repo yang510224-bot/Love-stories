@@ -3,28 +3,28 @@
 </style></head><body><main class="wrap"><section id="home"><div class="brand">STORIES OF ORDINARY LOVE</div><h1 class="lead">欸，你幹嘛啦！</h1><div class="sub">有些愛，一直都在。<br>一件事，從兩個人的眼睛看，可能是完全不同的故事。</div><div class="tiles" id="tiles"></div><p class="footer">互動短篇 · 依選擇改變對話 · 適合 iPhone</p></section><section class="story" id="story"><div class="nav"><button class="back" id="homebtn">← 故事館</button><span class="counter" id="count"></span></div><progress id="bar" max="100" value="0"></progress><div class="sceneArt" id="art"></div><div class="time" id="time"></div><h2 class="chapter" id="title"></h2><div class="prose" id="text"></div><div class="choices" id="choices"></div><div id="extra"></div><div class="note" id="footnote"></div></section></main>
 <script>
 const stories=[
-{id:'pot',name:'夜雨之後',tag:'一頓沒吃成的火鍋',emoji:'🍲',more:'星期三煎壞的蛋，星期五沒吃成的火鍋。',steps:[
+{id:'pot',name:'夜雨之後',tag:'一頓沒吃成的火鍋',emoji:'🍲',more:'星期三煎壞的蛋，星期五沒吃成的火鍋。',steps:[{"time":"星期三 · 17:36","title":"星期五，先說好喔","body":"超市門口下著雨，他突然指著火鍋海報。\n「欸，星期五要不要去吃？」\n\n你以為他在開玩笑。\n但他拿出手機，真的把星期五晚上七點半放進行事曆。\n\n「你要鴛鴦鍋還是麻辣？」\n\n他把雨傘往你的方向移。你突然開始期待那個還沒到的晚上。","opts":[["「吃完一起散步？」","walk","他說：「不要走太遠啦。」但沒有拒絕。"],["「這次我可以偷幾片肉？」","meat","「一片。最多一片！」你們笑著走進雨裡。"],["「你主動約的喔，別忘記。」","promise","他把行事曆畫面拿到你面前：「有記啦！」"]]},
 {time:'星期三 · 20:46',title:'半熟蛋，完全熟',body:'「你吃飯了？」\n「吃了啊。」\n你打開冰箱，只剩兩顆蛋。\n他看你一眼，把遊戲暫停。\n「……我煎給你啦。」\n\n「我要半熟的。」\n「我知道啦！」\n三分鐘後，蛋黃全熟。\n他低聲罵了一句，還是把比較漂亮的那一顆給你。',opts:[['「其實我想跟你一起吃。」','soft'],['「你的半熟是石頭嗎？」','joke'],['從後面抱他一下','hug']]},
 {time:'星期三 · 21:16',title:'三片肉',body:'隔壁阿姨敲門，提醒陽台衣服淋濕了。\n他衝去救制服，一隻襪子卻掉到樓下。\n「靠，那隻很好穿欸！」\n你笑得直不起腰。\n\n後來他窩在沙發上，忽然說：「禮拜五去吃火鍋？」\n「你主動約喔？」\n「不然勒。可是這次不准偷吃我三片肉。」',opts:[['「你還記得三片喔？」','joke'],['「我很開心你主動約我。」','soft'],['「星期五七點半，我訂位。」','plan']]},
 {time:'星期五 · 18:47',title:'穿好了的衣服',body:'你已經換好衣服。\n手機亮了。\n\n「我臨時有事，火鍋今天沒辦法了。抱歉。」\n\n你看向桌上昨天選好的菜單。\n訊息上顯示已讀。\n你不知道他正在做什麼。',opts:[['「你不是自己約我的嗎？」','anger'],['「發生什麼事了？」','ask'],['「我已經換好衣服了欸。」','hurt']]},
 {time:'星期五 · 20:46',title:'門口的另一雙鞋',body:'回到家，玄關多了一雙白鞋。\n廚房傳來他的笑聲。桌上有兩個便當盒，以及你愛吃的布丁。\n\n他看到你，先是一愣。\n「欸，我朋友來一下。」\n「……你不要先生氣喔。」\n\n朋友走出來，眼睛紅紅的。\n「抱歉，我剛分手。是他叫我過來的。」\n\n他終於看著你。\n「我不該只說有事。但我當時真的不能丟下他。」',opts:[['「你可以陪他，但不要讓我一直等。」','honest'],['「所以我的感受就不重要？」','anger'],['「他現在還好嗎？」','care']]},
 {time:'星期五 · 21:38',title:'一盒布丁',body:'朋友走了。\n他把布丁推到你面前。\n\n「我今天也有想跟你吃火鍋啊。」\n手機又響，是剛剛的朋友。\n他看著螢幕，沒有立刻接。\n你忽然不知道該希望他留下，還是希望他接電話。',opts:[['「你先確認他好不好，然後陪我一下。」','care'],['「其實我現在也需要你。」','honest'],['「今天先這樣吧。」','distance']]}],
 reveal:'18:04，他收到朋友的求救訊息。\n他看了看你們訂好的火鍋，猶豫很久。\n\n他不擅長解釋，也怕你失望，最後只傳「有事」。\n\n在便利商店，他突然說：「幫我拿那個布丁。」\n朋友問：「誰要吃？」\n他說：「我家那個。」\n\n這些都沒有讓那次失約變得不痛。但那盒布丁也不是無緣無故出現的。'},
-{id:'light',name:'留一盞燈',tag:'六年的樓梯燈',emoji:'💡',more:'一盆九重葛、一把螺絲起子，以及六年來誰都沒有講破的事。',steps:[
+{id:'light',name:'留一盞燈',tag:'六年的樓梯燈',emoji:'💡',more:'一盆九重葛、一把螺絲起子，以及六年來誰都沒有講破的事。',steps:[{"time":"三年前 · 颱風過後","title":"你們一起搬起那盆花","body":"九重葛被颱風吹倒在樓梯間。\n你一個人搬不起來，阿岳穿著拖鞋下樓幫你。\n\n「你是在跟一盆植物打架喔？」\n\n你說以後等花開了，樓梯間一定很好看。\n他一邊幫你扶花盆一邊笑：「先活到下星期再說啦。」\n\n你們第一次約好一起照顧它。","opts":[["「我澆水，你幫我顧花盆。」","plant","他嫌你會把花淹死，隔天還是找來接水的盆子。"],["「等開花我們拍照！」","photo","他說很無聊，卻真的拿起手機拍了一張滿是泥土的花盆。"],["「以後路過也幫我看看嘛。」","look","他說：「我沒那麼閒。」但走上樓時還是回頭看了一眼。"]]},
 {time:'星期日 · 19:38',title:'那盆不見了的植物',body:'你和阿岳住同一棟公寓六年。他住五樓，你住四樓。\n\n上次你半夜發燒，他送藥過來，隔天照樣跟你算七十六塊。\n\n但他最近常常不回訊息。\n而今天，你們一起照顧三年的九重葛不見了。\n\n他回你：「搬走了。樓梯不能放東西。」',opts:[['「你最近是不是在躲我？」','ask'],['「那盆養三年欸！你搬去哪？」','plant'],['直接上五樓敲門','door']]},
 {time:'星期日 · 19:51',title:'他沒說的事',body:'阿岳開門時，穿著舊 T 恤，肩膀都是灰。\n後面堆滿紙箱。\n\n「你要搬家？」\n「對啊，公司調台中。」\n「什麼時候？」\n「明天。」\n\n你愣住了。\n他抱起紙箱，底下突然破了，螺絲灑滿樓梯。\n「幹！！！」',opts:[['蹲下去幫他撿螺絲','help'],['「你他媽螺絲真的掉滿地了。」','joke'],['「你怎麼現在才跟我講？」','hurt']]},
 {time:'星期日 · 20:18',title:'三年前的那顆',body:'你們蹲著撿螺絲。\n他忽然指著其中一顆。\n\n「欸，那顆是三年前你借我的吧。」\n「哪有人記螺絲記三年？」\n「我啊，我還沒還。」\n\n你們笑了一下。\n然後他低頭說：「其實我沒有很想走啦。」\n\n你問他為什麼不早說。\n「因為我一想到你會問九重葛怎麼辦，就不知道怎麼回答。」',opts:[['「我以為你討厭我了。」','honest'],['「今晚我陪你整理。」','help'],['「我還是很生氣。」','hurt']]},
 {time:'星期日 · 22:07',title:'一把鑰匙',body:'搬完最後一箱，他把借來的螺絲起子還給你。\n還有你家的備用鑰匙。\n\n「以後沒辦法幫你收包裹了。」\n\n他走到門口，又說：「欸，你家玄關燈記得修。」\n「幹嘛？」\n「每次你加班回來都黑的啊。」\n\n「你怎麼知道？」\n\n他撇頭。\n「以前晚上聽到你回家，我會幫你把樓梯燈打開。」\n\n停了一秒。\n「不然你摸黑開門真的很吵。」',opts:[['「……你怎麼都不講？」','honest'],['伸手抱他一下','hug'],['「以後換我自己開啦。」','soft']]},
 {time:'星期一 · 23:16',title:'燈還亮著',body:'阿岳搬去台中了。\n九重葛回到四樓。\n\n今天你又加班。\n回到家，樓梯間是暗的。\n你伸手按下開關。\n\n燈亮了。\n\n這時手機震動。\n「欸，九重葛有澆水嗎？不要又澆到爛掉欸。」\n\n你看著亮起的樓梯，忽然想到過去那六年。',opts:[['「有啦，你很煩欸。」','joke'],['「欸，謝謝你。」','soft'],['拍一張亮著的樓梯燈傳給他','light']]}],
 reveal:'一個月前，公司通知阿岳調去台中。\n他坐在陽台，看著九重葛。\n\n朋友問：「怎麼不跟樓下那個講？」\n「就因為很熟，才不知道怎麼講啊。」\n\n回家經過四樓，看見你門口的包裹。\n他幫你放好，順手把樓梯燈打開。\n\n「靠，以後誰幫這個白癡開燈。」'},
-{id:'seat',name:'留給你的空位',tag:'他的故事 · 第一個視角',emoji:'🎟️',more:'兩張車票、一個沒坐下來的人，和一句始終沒問出口的話。',steps:[
+{id:'seat',name:'留給你的空位',tag:'他的故事 · 第一個視角',emoji:'🎟️',more:'兩張車票、一個沒坐下來的人，和一句始終沒問出口的話。',steps:[{"time":"三個禮拜前 · 18:05","title":"原來是他先說想去的","body":"阿禾滑手機，突然把天文館的照片推給你。\n\n「欸，這個重新開幕了，一起去看看？」\n\n你笑他明明最討厭排隊。\n他說：「就是想看看它有多爛啊。」\n\n你們翻開行事曆，找到同一個空著的星期六。\n你心想：這次，是他先邀我的耶。","opts":[["「去完一起吃拉麵。」","ramen","他說要吃辣的。你甚至查了餐廳營業時間。"],["「我買車票，你找展覽。」","tickets","你已經在想像回程要一起吐槽什麼。"],["「你真的要跟我去喔？」","invite","「不然我問鬼喔？」他翻了個白眼，你笑得很開心。"]]},
 {time:'星期六 · 09:17',title:'一張沒有指定座位的票',body:'你們約好去看海邊那座很老的天文館。\n\n三個禮拜前是阿禾自己說的：「聽說整修好了，去看看？」\n\n你查車次、買票，還記得他討厭七點起床。\n\n出門前，你把兩張車票拍給他。\n\n他回：「欸，我今天精神真的很差。」\n\n過了兩分鐘，又補：「你自己先去，不用等我。」\n\n窗外的太陽很好。你突然不太想出門了。',opts:[['「我其實是想跟你一起去，不是想看天文館。」','honest','手機安靜了一會。他沒有立刻說抱歉。你第一次把想要的事情講得這麼直接。'],['「好啊，我自己去。」把另一張票收起來。','quiet','你打出很輕鬆的兩個字，卻盯著那個對話框好幾分鐘。'],['「你上次明明說想去。」','hurt','你不想再裝作沒關係。他讀了訊息，回了一個「我知道」。']]},
 {time:'星期六 · 10:23',title:'海風大得很過分',body:'你還是上車了。\n\n旁邊的位置空著。\n\n一個阿姨上車時指著座位：「這裡有人嗎？」\n你停了一下。\n\n「沒有。」\n\n她坐下來，打開一包水果糖，硬塞給你兩顆。\n「坐車吃這個，比較不會暈。」\n\n你其實不暈車。\n\n手機亮起。阿禾問：「你有上車？」',opts:[['拍窗外的海給他：「快到了。」','photo','他傳來：「靠，天氣也太好了吧。」你們像平常一樣說了句廢話。'],['「有。可是旁邊沒有你。」','honest','他回覆得很慢：「我知道。」你看不出那句話是什麼表情。'],['「你先好好休息，我晚點再跟你講。」','care','他只回：「好。」沒有多加解釋，卻很快讀了你的下一張照片。']]},
 {time:'星期六 · 12:46',title:'那台壞掉的星球機',body:'天文館不如你想像中漂亮。\n\n入口的地球模型正在維修，星空影片還延遲了十五分鐘。\n\n你在紀念品店看到一台旋轉的小型星球機。\n三年前，你和阿禾曾經在一間餐廳看到類似的東西。\n那時他說：「這什麼幼稚鬼玩具。」\n十分鐘後卻偷偷按了三次開關。\n\n你拿起一台，售價比想像中貴。\n\n店員問：「送人的嗎？」',opts:[['「不是，買給自己的。」放回架上。','quiet','你笑了笑。原來有些記憶即使不買下來，也不會消失。'],['買一張很醜的星座貼紙，拍給阿禾。','joke','他秒回：「不要亂買。」然後又問：「有沒有比較醜的？」'],['傳：「欸，這個你一定會喜歡。」','photo','你等了一會，收到一句：「你怎麼還記得那個。」']]},
 {time:'星期六 · 18:39',title:'樓下那台販賣機',body:'回到家，你在樓下販賣機前找零錢。\n\n阿禾剛好從樓梯走下來，頭髮亂得像剛睡醒。\n手裡拿著一把便利商店雨傘。\n\n「你回來了喔？」\n\n「嗯。」\n\n他看了一眼你手上的紀念品袋。\n\n「好玩嗎？」\n\n你說了展覽延遲、阿姨塞水果糖、還有那台很醜的星球機。\n\n他笑出了聲。\n然後突然問：「那個……你今天是不是很失望？」',opts:[['「是啊，但我知道你今天很累。」','honest','他點點頭：「嗯。可是我也有想去。」他沒有承諾下次一定能去。'],['「你覺得呢？」','hurt','他一下子不知道怎麼回答。「我不是故意讓你等啦。」你們都不太滿意這句話。'],['「下次你安排，我什麼都不查。」','invite','他愣一下：「你很敢欸，說不定會搭錯車。」你說：「就搭錯啊。」']]},
 {time:'星期日 · 21:08',title:'原來有人記得',body:'隔天，阿禾在門口丟給你一個紙袋。\n\n「你昨天不是說車上阿姨給你水果糖？」\n\n裡面是兩包同樣的糖。\n\n「我路過看到。不是要跟你道歉喔。」\n\n你翻到紙袋底部，發現一張手寫紙條。\n\n「下次如果你還想去一個地方，可以告訴我。不要先幫我決定我一定不想去。」\n\n你抬頭。\n他已經轉身走到樓梯口。\n\n「欸，糖不要一天吃完，很甜。」',opts:[['「那換你找一天，帶我出去。」','invite','他回頭做了個鬼臉：「好啦，我想想。」這次他沒有說你自己先去。'],['「欸，我其實昨天很想你。」','honest','他站住。半晌只說：「……我知道啦。」然後把紙袋提把幫你折好。'],['「這糖明明很難吃欸。」','joke','他笑出聲：「靠！難吃還我啊。」你把糖藏到背後。']]}],
 reveal:'星期六早上，阿禾把兩張車票的截圖看了很久。\n\n他前一晚沒睡好，原本以為只要說「你自己先去」，就不會拖累你的行程。\n\n可他忘了，你買票不是因為缺一個人湊優惠。\n\n下午，他重新查了去海邊的班車，卻沒有訂票。他怕答應了又做不到。\n\n你提到車上的水果糖時，他其實記住了。\n隔天路過商店，看見糖就買了兩包。\n\n他沒有因此變得很擅長陪伴；你也沒有因此不再想被主動選擇。\n只是那天，你們終於讓彼此多知道了一點。'},
-{id:'otherbank',name:'沒有寄出的邀請',tag:'他的故事 · 另一個視角',emoji:'🌊',more:'同一趟海邊旅行，從那個留下來的人開始。',steps:[
+{id:'otherbank',name:'沒有寄出的邀請',tag:'他的故事 · 另一個視角',emoji:'🌊',more:'同一趟海邊旅行，從那個留下來的人開始。',steps:[{"time":"三個禮拜前 · 18:05","title":"那個邀請是你說的","body":"你看到天文館重新開幕的照片。\n突然想起阿衡以前笑你玩星球機很幼稚。\n\n你自己問：「欸，要不要找一天去？」\n\n阿衡立刻拿出手機查車次，眼睛亮亮的。\n你其實有點開心，有人這麼期待你提議的事情。\n\n他問星期六可不可以。你點了頭。","opts":[["「回程搭慢車，一起看海。」","train","阿衡笑說你難得會安排。你心裡卻有點得意。"],["「去完吃拉麵？」","ramen","他馬上查附近餐廳，還問你吃不吃辣。"],["「欸，說好真的要去喔。」","promise","他在行事曆畫了一顆星，你看見了。"]]},
 {time:'星期五 · 23:58',title:'已讀之前',body:'你叫阿禾。\n\n阿衡三個禮拜前買好車票，問你要不要去海邊天文館。\n那天你是真心答應的。\n\n可是這週事情多到你快喘不過氣。\n你終於回到家，連澡都懶得洗。\n\n阿衡又傳來：「我查好明天的交通了，起床打給你！」\n\n你看著訊息，忽然覺得明天的自己大概連說話都沒力氣。\n\n現在手機就在你手上。',opts:[['「欸，我明天可能真的沒力氣，你會失望嗎？」','honest','你看著送出去的訊息，心臟跳得有點快。他回：「會啊，因為我很期待跟你一起。」'],['先不講，明天醒來再決定。','quiet','你把手機蓋住。不是沒想到他，只是你現在真的不知道怎麼回。'],['傳一句：「你先去啦，不用顧慮我。」','distance','這句話看起來很體貼。發出去後，你卻沒有比較輕鬆。']]},
 {time:'星期六 · 09:17',title:'你自己先去',body:'早上醒來，陽光照在你臉上。\n\n阿衡傳了兩張車票的照片。\n\n你知道他為這趟旅行查了好多東西。\n你也知道他討厭別人臨時變卦。\n\n可是你想到人群、火車、排隊，胃裡就縮了一下。\n\n最後你打字：「我今天精神真的很差。」\n「你自己先去，不用等我。」\n\n對話框安靜了。\n你忽然想知道他會不會生氣。',opts:[['「我不是不想跟你去，是我今天真的撐不住。」','honest','你把話講清楚了，但這不保證他就不失望。'],['收起手機，先去睡。','quiet','你睡不著，卻也沒有力氣把訊息重新打開。'],['補一句：「對不起。」','care','他回你：「我知道。」你不知道自己能不能接住他的失望。']]},
 {time:'星期六 · 12:51',title:'星球機',body:'你起床喝水，看到阿衡傳來的照片。\n\n小小的星球機，一按就會把滿天星星投在天花板。\n\n你想起三年前那間餐廳。\n你明明嘲笑那東西幼稚，卻忍不住玩了好幾次。\n\n你甚至忘了自己曾經說過這件事。\n\n而他還記得。\n\n你很想回：「謝謝你記得。」\n手指停在鍵盤上。',opts:[['「靠，你居然還記得那個。」','joke','他馬上回：「廢話，你那時候玩得跟小孩一樣。」你在廚房笑出聲。'],['「好看嗎？你今天玩得開心嗎？」','care','他傳了好多展覽抱怨。你很認真看完，還想著下次也許可以一起去。'],['只按一個愛心反應。','quiet','他沒有追問。你卻反覆打開那張照片看了好幾次。']]},
@@ -33,10 +33,11 @@ reveal:'星期六早上，阿禾把兩張車票的截圖看了很久。\n\n他�
 reveal:'同一個星期六，阿衡坐上了往海邊的火車。\n\n他旁邊的位置空著。阿姨問可不可以坐，他說「可以」。\n\n他其實沒那麼想看天文館。他最期待的是回程時跟你一起吐槽展覽有多爛。\n\n他有點生氣，有點委屈，但仍然在紀念品店看到幼稚的星球機時，第一個想起你。\n\n他沒有要求你變成一個永遠有力氣陪伴的人。\n他只是希望，下次你想到他時，能讓他知道。\n\n而你也有權利說累、說不想去、說需要自己待著。\n這兩份需要，不必用誰比較愛誰來決勝負。'}
 
 ];
-let active=null,idx=0,log=[],revealed=false;const $=id=>document.getElementById(id);
+const memorySeeds={"pot":["那個星期三，他把雨傘往你那邊挪，還問你要什麼湯底。你記得他主動邀約時，自己心裡突然有多開心。","那張星期五晚上七點半的行事曆"],"light":["三年前颱風過後，你們一起把花盆扶正。那天只覺得他嘴巴很壞，誰知道這會成為三年的習慣。","那盆九重葛留下的水痕"],"seat":["你記得他第一次把天文館照片推到你面前時的表情。星期六在發生以前，已經讓你期待了三個禮拜。","那張沒有用到的車票"],"otherbank":["那天下午是你先提出邀請的。你記得阿衡聽見時眼睛一亮，也記得自己其實很想跟他一起去。","那份畫著星星的行事曆"]};
+let active=null,idx=0,log=[],revealed=false,endingPhase=0,originalWords='',closingWords='';const $=id=>document.getElementById(id);
 function esc(v){return v.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function home(){active=null;$('home').style.display='block';$('story').style.display='none';history.replaceState({},'',location.pathname)}
-function start(id){active=stories.find(x=>x.id===id);idx=0;log=[];revealed=false;$('home').style.display='none';$('story').style.display='block';history.replaceState({},'','#'+id);render()}
+function start(id){active=stories.find(x=>x.id===id);idx=0;log=[];revealed=false;endingPhase=0;originalWords='';closingWords='';$('home').style.display='none';$('story').style.display='block';history.replaceState({},'','#'+id);render()}
 function pick(label,tag){log.push({label,tag});idx++;render()}
 function render(){if(!active)return;let end=idx>=active.steps.length;
 $('count').textContent=end?'終章':(idx+1)+' / '+active.steps.length;$('bar').value=end?100:idx/active.steps.length*100;
@@ -45,10 +46,35 @@ $('extra').innerHTML='';$('choices').innerHTML='';
 if(!end){let s=active.steps[idx];$('time').textContent=s.time;$('title').textContent=s.title;
 let tail='';if(idx>0&&log.length){const previous=log[log.length-1].tag;if(previous==='anger'||previous==='hurt')tail='\n\n他知道你不高興，但沒有立刻說出一個讓你滿意的答案。';else if(previous==='joke')tail='\n\n你們至少笑了一下。有些難說的話，還沒真的說出口。';else if(previous==='hug')tail='\n\n他愣了一下，沒有把你推開。';else if(previous==='care'||previous==='help')tail='\n\n他看見你的動作，沒有馬上說謝謝。'}$('text').textContent=s.body+tail+(log.length&&active.steps[idx-1]?.opts.find(a=>a[0]===log[log.length-1].label)?.[2]?'\n\n'+active.steps[idx-1].opts.find(a=>a[0]===log[log.length-1].label)[2]:'');
 s.opts.forEach(a=>{const b=document.createElement('button');b.className='choice';b.textContent=a[0]+'  ›';b.onclick=()=>pick(a[0],a[1]);$('choices').append(b)});
-$('footnote').textContent='沒有所謂正確選項。故事裡的人也有自己的需要。'}else{$('time').textContent='最後 · 你可以選擇知道更多';$('title').textContent='有些話，當時沒有說出口。';$('text').textContent='故事走到這裡。你不一定得到想要的答案，但那些曾經發生的小事，都不是假的。';
-const box=$('extra');const see=document.createElement('button');see.className='secondary';see.textContent=revealed?'隱藏另一個視角':'看一眼他的視角';see.onclick=()=>{revealed=!revealed;render()};box.append(see);if(revealed){const e=document.createElement('div');e.className='reveal';e.textContent=active.reveal;box.append(e)}
-const cap=document.createElement('p');cap.className='note';cap.textContent='如果要留下一句話，你會說什麼？';box.append(cap);const ta=document.createElement('textarea');ta.placeholder='不用像結論。你真正想說的就好。';ta.id='last';box.append(ta);
-const save=document.createElement('button');save.className='primary';save.textContent='留下這句話';save.onclick=()=>{if(!ta.value.trim())return;const value=ta.value.trim();let old=$('saved');if(old)old.remove();const p=document.createElement('div');p.id='saved';p.className='quote';p.textContent='「'+value+'」\n\n我收到了。這句話不用變成什麼標準答案。';box.append(p)};box.append(save);
-const copy=document.createElement('button');copy.className='secondary';copy.textContent='複製我的遊玩紀錄';copy.onclick=()=>{let t=active.name+'\n'+log.map((x,i)=>(i+1)+'. '+x.label).join('\n')+'\n最後：'+ta.value;navigator.clipboard?.writeText(t).then(()=>{copy.textContent='已複製'},()=>{copy.textContent='無法複製，請手動選取文字'})};box.append(copy);const again=document.createElement('button');again.className='secondary';again.textContent='返回故事館';again.onclick=home;box.append(again);$('footnote').textContent='這是互動短篇試玩版；另一個視角不是替任何人開脫。'}}
+$('footnote').textContent='沒有所謂正確選項。故事裡的人也有自己的需要。'}else {
+const box=$('extra'),seed=memorySeeds[active.id]||['你記得那天原本有多期待。','那件你留下的小東西'];
+$('time').textContent=endingPhase===0?'餘韻 · 那時候的期待':endingPhase===1?'你還沒說完的話':endingPhase===2?'另一個人的那一天':'往後的日子';
+if(endingPhase===0){
+$('title').textContent='你真的曾經很期待。';
+$('text').textContent=seed[0]+'\n\n你又看見'+seed[1]+'。\n\n故事沒有照原本想的發生，可是那些曾經一起說過的話、曾經開始期待的事，都是真的。\n\n如果可以再回到還沒出發的那一刻，你最想留住什麼？';
+[['再想一次當初怎麼約好的','remember'],['看看現在留下來的東西','object'],['想想那個沒能一起度過的下午','absence']].forEach(o=>{let x=document.createElement('button');x.className='choice';x.textContent=o[0]+'  ›';x.onclick=()=>{endingPhase=1;render();window.scrollTo(0,0)};box.appendChild(x)});
+$('footnote').textContent='這裡不需要先理解另一個人。';
+}else if(endingPhase===1){
+$('title').textContent='原來那一天，對你這麼重要。';
+$('text').textContent=seed[0]+'\n\n你不必現在就體諒誰，也不必急著把這份期待放下。';
+const p=document.createElement('p');p.className='note';p.textContent='先對那時候的自己說說：你原本有多想一起去？最捨不得的那件小事是什麼？';box.appendChild(p);
+const ta=document.createElement('textarea');ta.placeholder='我原本一直期待……';ta.value=originalWords;box.appendChild(ta);
+const next=document.createElement('button');next.className='primary';next.textContent='把這句話留在這裡';next.disabled=!originalWords.trim();ta.oninput=()=>{originalWords=ta.value;next.disabled=!originalWords.trim()};next.onclick=()=>{endingPhase=2;render();window.scrollTo(0,0)};box.appendChild(next);
+$('footnote').textContent='這些話不會傳給角色，也沒有標準答案。';
+}else if(endingPhase===2){
+$('title').textContent='你想說的話，已經留下。';
+$('text').textContent='「'+originalWords+'」\n\n沒有人打斷，也沒有人急著為對方辯解。\n\n至於他那一天經歷了什麼，你現在還不知道。就算知道了，你的失望也不會因此變成假的。';
+if(!revealed){const see=document.createElement('button');see.className='primary';see.textContent='看看他的那一天';see.onclick=()=>{revealed=true;render();window.scrollTo(0,0)};box.appendChild(see)}
+else{const div=document.createElement('div');div.className='reveal';div.textContent=active.reveal;box.appendChild(div);const advance=document.createElement('button');advance.className='primary';advance.textContent='帶著兩邊的故事繼續走';advance.onclick=()=>{endingPhase=3;render();window.scrollTo(0,0)};box.appendChild(advance)}
+$('footnote').textContent='隱藏視角不是替任何人的行為開脫。';
+}else{
+$('title').textContent='明天還會有新的日子。';
+$('text').textContent='你曾經期待過，這份期待是真的。\n你的失落也是真的。\n\n現在你知道的比那時候多了一點，但未來怎麼走，還需要你們各自做出選擇。';
+const ta=document.createElement('textarea');ta.placeholder='想對這段故事說些什麼？';ta.value=closingWords;ta.oninput=()=>closingWords=ta.value;box.appendChild(ta);
+const save=document.createElement('button');save.className='primary';save.textContent='複製我的完整遊玩紀錄';save.onclick=()=>{closingWords=ta.value;const record=active.name+'\n'+log.map((x,i)=>(i+1)+'. '+x.label).join('\n')+'\n我的期待：'+originalWords+'\n最後：'+closingWords;navigator.clipboard.writeText(record).then(()=>save.textContent='已複製',()=>save.textContent='無法複製')};box.appendChild(save);
+const back=document.createElement('button');back.className='secondary';back.textContent='回故事館';back.onclick=home;box.appendChild(back);
+$('footnote').textContent='結局不是要你立刻做出決定。';
+}
+}}
 $('tiles').innerHTML=stories.map(s=>'<button class="tile" data-id="'+s.id+'"><div class="art '+s.id+'">'+s.emoji+'</div><div class="detail"><span class="arrow">↗</span><strong>'+s.name+'</strong><small>'+s.more+'</small></div></button>').join('');document.querySelectorAll('.tile').forEach(b=>b.onclick=()=>start(b.dataset.id));$('homebtn').onclick=home;const hash=location.hash.slice(1);if(stories.some(s=>s.id===hash))start(hash);
 </script></body></html>
