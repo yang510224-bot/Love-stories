@@ -14,7 +14,10 @@ async function preflight({key=process.env.VOICE_SWAP_API_KEY||process.env.Voice_
   r.responseKeys=Object.keys(data).slice(0,20);
   r.modelCount=Array.isArray(data.models)?data.models.length:null;
   r.modelFieldNames=Array.isArray(data.models)&&data.models.length?Object.keys(data.models[0]).slice(0,40):[];
-  r.publicModels=(Array.isArray(data.models)?data.models:[]).filter(m=>m.is_private===false&&m.is_owned_by_user!==true).slice(0,80).map(m=>({id:typeof m.id==='string'?m.id.slice(0,100):null,name:typeof m.name==='string'?m.name.slice(0,100):null,description:typeof m.description==='string'?m.description.slice(0,250):null,has_audio:m.has_audio===true,version:Number.isFinite(m.version)?m.version:null}));
+  const isFalse=v=>v===false||v===0||v==='false'||v==='0';
+  const isTrue=v=>v===true||v===1||v==='true'||v==='1';
+  r.privacyFlagForms=[...new Set((data.models||[]).map(m=>typeof m.is_private+':'+(isFalse(m.is_private)?'false':isTrue(m.is_private)?'true':'unknown')))];
+  r.publicModels=(Array.isArray(data.models)?data.models:[]).filter(m=>isFalse(m.is_private)&&!isTrue(m.is_owned_by_user)).slice(0,80).map(m=>({id:typeof m.id==='string'?m.id.slice(0,100):null,name:typeof m.name==='string'?m.name.slice(0,100):null,description:typeof m.description==='string'?m.description.slice(0,250):null,has_audio:isTrue(m.has_audio),version:Number.isFinite(m.version)?m.version:null}));
   r.authenticated=true;
   return r;
  }catch{r.error='preflight_request_failed';return r;}
