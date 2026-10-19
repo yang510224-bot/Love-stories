@@ -34,7 +34,7 @@ rain:'<path d="M0 212h340" stroke="#e1c8bd" stroke-width="12"/><path d="M50 110h
 coast:'<path d="M0 193Q70 178 146 192T340 183v117H0z" fill="#3b7a9b"/><path d="M0 222Q80 206 150 219T340 212" stroke="#f6d6cb" stroke-width="6" fill="none"/><path d="M0 251H340" stroke="#c7afb4" stroke-width="11"/>',
 sunset:'<circle cx="263" cy="86" r="49" fill="#ffe5ac"/><path d="M0 185Q108 173 176 186T340 179V300H0" fill="#52728e"/><path d="M0 239Q135 218 340 235" fill="none" stroke="#f6c2b0" stroke-width="5"/>'
 };
-const folk=(x,y,skin,coat,scale,flip)=>'<g transform="translate('+x+' '+y+') scale('+scale+' '+(flip?'-'+scale:scale)+')"><ellipse cx="0" cy="42" rx="22" ry="33" fill="'+coat+'"/><rect x="-6" y="12" width="12" height="13" rx="6" fill="'+skin+'"/><ellipse cy="-1" rx="17" ry="21" fill="'+skin+'"/><path d="M-18-6q0-25 18-25 23 0 20 24-15-8-25-5z" fill="#292c43"/><circle cx="-6" cy="1" r="1.5" fill="#453a4b"/><circle cx="9" cy="1" r="1.5" fill="#453a4b"/></g>';
+const folk=(x,y,skin,coat,scale,flip)=>'<g transform="translate('+x+' '+y+') scale('+scale+' '+scale+')"><ellipse cx="0" cy="42" rx="22" ry="33" fill="'+coat+'"/><rect x="-6" y="12" width="12" height="13" rx="6" fill="'+skin+'"/><ellipse cy="-1" rx="17" ry="21" fill="'+skin+'"/><path d="M-18-6q0-25 18-25 23 0 20 24-15-8-25-5z" fill="#292c43"/><circle cx="-6" cy="1" r="1.5" fill="#453a4b"/><circle cx="9" cy="1" r="1.5" fill="#453a4b"/></g>';
 const people=['street','kitchen','balcony','sofa','hall','flower','boxes','door','rain','coast','sunset','station'];
 const bodies=people.includes(type)?folk(116,190,'#e9bfa9','#7a718c',1.05,false)+folk(242,198,'#eac9b8','#b28188',.98,true):'';
 const decorations='<g opacity=".15"><circle cx="50" cy="49" r="25" fill="#fff"/><circle cx="280" cy="40" r="15" fill="#fff"/><path d="M21 39l11-9M300 230l13 7" stroke="#fff" stroke-width="3"/></g>';
@@ -42,7 +42,7 @@ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 290" role="img"
 }
 function drawPanel(type,seed,afterReveal){$('art').innerHTML=artSvg(type,seed,afterReveal);}
 function drawForScene(id,index){drawPanel((artPlans[id]||artPlans.pot)[index]||'room',id+index,false)}
-function drawForEnding(id,phase){drawPanel(phase===2?'room':phase===3?'sunset':(artPlans[id]||artPlans.pot).at(-1),id+'end'+phase,phase===2)}
+function drawForEnding(id,phase){const type=phase===2?(id==='light'?'stairs':'room'):phase===3?'sunset':(artPlans[id]||artPlans.pot).at(-1);drawPanel(type,id+'end'+phase,phase===2&&revealed)}
 function dateForStory(id,index,fallback){return (timelineDates[id]||[])[index]||fallback}
 
 const stories=[
@@ -109,7 +109,7 @@ s.opts.forEach(a=>{const b=document.createElement('button');b.className='choice'
 $('footnote').textContent='沒有所謂正確選項。故事裡的人也有自己的需要。'}else {
 drawForEnding(active.id,endingPhase);
 const box=$('extra'),seed=memorySeeds[active.id]||['你記得那天原本有多期待。','那件你留下的小東西'];
-$('time').textContent=endingPhase===0?'餘韻 · 那時候的期待':endingPhase===1?'你還沒說完的話':endingPhase===2?'另一個人的那一天':'往後的日子';
+$('time').textContent=(reflectionDates[active.id]||'故事裡的一天')+(endingPhase===2?'・另一個人的視角':endingPhase===3?'・尾聲':'');
 if(endingPhase===0){
 const scene=reflectionScenes[active.id]||reflectionScenes.seat;
 $('time').textContent=reflectionDates[active.id]||scene.time;
