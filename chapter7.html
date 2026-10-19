@@ -12,12 +12,14 @@ const scenes=[
 ["10 / 13・星期二 21:18","他傳來一句話","訊息亮起的晚上","小澤傳訊息：\n「欸，那張你有看到嗎？」",["「有。你拍得不錯欸。」","「原來你也有在看我。」"]]
 ];
 const hidden="那天小澤接過相機，沒有去拍夜市。\n\n他看著你在旁邊笑，突然想到：\n這個人拍了我好多次，卻幾乎沒有自己的照片。\n\n所以最後一格，他留給了你。\n\n他沒說。只是想讓你也留在那個晚上。";
+const fallbackPhotos=["https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200&auto=format&fit=crop&q=85","https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=1200&auto=format&fit=crop&q=85","https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&auto=format&fit=crop&q=85","https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=1200&auto=format&fit=crop&q=85","https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=1200&auto=format&fit=crop&q=85","https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=1200&auto=format&fit=crop&q=85","https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=1200&auto=format&fit=crop&q=85"];
+function setPhoto(i){const el=$("image");el.onerror=()=>{el.onerror=null;el.src=fallbackPhotos[i]};el.src=photos[i]}
 const $=id=>document.getElementById(id);let n=0,stage=0,choices=[],words="",last="",shown=false;
 function button(t,fn,ghost=false){const b=document.createElement("button");b.className="choice"+(ghost?" ghost":"");b.textContent=t;b.onclick=fn;$("choices").append(b);return b}
 function move(){window.scrollTo(0,0)}
 function show(){const c=$("choices"),e=$("extra");c.replaceChildren();e.replaceChildren();$("progress").value=n<scenes.length?n/scenes.length*100:100;
-if(n<scenes.length){const s=scenes[n];$("image").src=photos[n];$("place").textContent=s[2];$("date").textContent=s[0];$("title").textContent=s[1];$("story").textContent=s[3];if(s[4])s[4].forEach(t=>button(t,()=>{choices.push(t);n++;show();move()}));else button("繼續  ›",()=>{n++;show();move()});return}
-$("image").src=photos[stage===3?0:stage===2?6:5];$("place").textContent="故事之後";$("date").textContent="10 / 13・星期二 晚上";
+if(n<scenes.length){const s=scenes[n];setPhoto(n);$("place").textContent=s[2];$("date").textContent=s[0];$("title").textContent=s[1];$("story").textContent=s[3];if(s[4])s[4].forEach(t=>button(t,()=>{choices.push(t);n++;show();move()}));else button("繼續  ›",()=>{n++;show();move()});return}
+setPhoto(stage===3?0:stage===2?6:5);$("place").textContent="故事之後";$("date").textContent="10 / 13・星期二 晚上";
 if(stage===0){$("title").textContent="你也在照片裡";$("story").textContent="你看著第八張照片。\n原來，那晚不只你在看著他。";button("再看看那張照片  ›",()=>{stage=1;show();move()})}
 if(stage===1){$("title").textContent="你想留下什麼？";$("story").textContent="有句話，不一定要傳出去。";const t=document.createElement("textarea");t.className="entry";t.placeholder="其實我想說……";t.value=words;t.oninput=()=>words=t.value;e.append(t);button("把這句話留下",()=>{words=t.value;stage=2;show();move()})}
 if(stage===2){$("title").textContent=shown?"他眼裡的那個晚上":"你留下的話";$("story").textContent=words?"「"+words+"」":"照片還放在桌上。";if(shown){const p=document.createElement("div");p.className="panel";p.textContent=hidden;e.append(p);button("帶著這張照片繼續走",()=>{stage=3;show();move()})}else button("看看他的那一天",()=>{shown=true;show();move()})}
