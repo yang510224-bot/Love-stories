@@ -1,4 +1,5 @@
 'use strict';
+if(process.env.VOICE_SWAP_PREFLIGHT_ENABLED==='1') void require('./voiceswap-preflight').preflight();
 const voiceTest=require('./eleven-test');
 void voiceTest.run();
 if(process.env.ELEVEN_PREFLIGHT_ENABLED==='1') void require('./eleven-preflight').preflight();
