@@ -6,25 +6,12 @@ const scenes=[
 {date:'4 / 26・星期日 20:16',title:'一起去啊',art:'rooftop',a:'「天文館重新開了耶。」',b:'「那一起去啊。」',text:'他笑著點頭。'},
 {date:'5 / 10・星期日 21:40',title:'兩張票',art:'desk',a:'「我買好了。」',b:'「好啊！」',text:'連回程車次都查好了。'},
 {date:'5 / 11・星期一 08:36',title:'出發前',art:'station',a:'「我今天真的很累。」',b:'「你自己先去，好嗎？」',text:'你已經到車站了。',choices:['「可是我想跟你一起去。」','「好，你休息。」','「那下次換你約我。」']},
-{date:'5 / 11・星期一 10:05',title:'旁邊的位置',art:'train',a:'「這裡有人嗎？」',b:'「……沒有。」',text:'陽光很好。
-空位也很亮。'},
-{date:'5 / 11・星期一 15:22',title:'假的星空',art:'stars',a:'「這星空也太假了吧。」',b:'',text:'你笑了一下。
-原本想說給他聽。',choices:['拍一張照片傳給他','先把手機收起來','打字：「如果你在就好了。」']},
-{date:'5 / 11・星期一 22:07',title:'那張票',art:'tickets',a:'',b:'',text:'一張有摺痕。
-另一張還是平的。'},
-{date:'5 / 12・星期二 19:31',title:'門外的人',art:'door',a:'「欸，昨天……」',b:'',text:'他站在門口。
-這次沒有拿飲料。'}
+{date:'5 / 11・星期一 10:05',title:'旁邊的位置',art:'train',a:'「這裡有人嗎？」',b:'「……沒有。」',text:'陽光很好。\n空位也很亮。'},
+{date:'5 / 11・星期一 15:22',title:'假的星空',art:'stars',a:'「這星空也太假了吧。」',b:'',text:'你笑了一下。\n原本想說給他聽。',choices:['拍一張照片傳給他','先把手機收起來','打字：「如果你在就好了。」']},
+{date:'5 / 11・星期一 22:07',title:'那張票',art:'tickets',a:'',b:'',text:'一張有摺痕。\n另一張還是平的。'},
+{date:'5 / 12・星期二 19:31',title:'門外的人',art:'door',a:'「欸，昨天……」',b:'',text:'他站在門口。\n這次沒有拿飲料。'}
 ];
-const hiddenText='他真的累到不想出門。
-
-但昨天，他看見你發的星空照片，才突然明白：你想看的不是星星。
-
-他沒有馬上要求你原諒。
-
-他把下星期六空下來，查好車次，傳來一句：
-「欸，這次我來約你，好不好？」';
-
-/*__ART__*/
+const hiddenText='他真的累到不想出門。\n\n但昨天，他看見你發的星空照片，才突然明白：你想看的不是星星。\n\n他沒有馬上要求你原諒。\n\n他把下星期六空下來，查好車次，傳來一句：\n「欸，這次我來約你，好不好？」';
 const $=id=>document.getElementById(id);
 let index=0,answers=[],phase=0,reflection='',last='',uncovered=false;
 function btn(label,fn,kind){const b=document.createElement('button');b.className='btn '+(kind||'');b.textContent=label;b.onclick=fn;$('choices').append(b);return b}
