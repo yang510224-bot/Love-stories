@@ -149,5 +149,5 @@ $('footnote').textContent='結局不是要你立刻做出決定。';
 }
 }}
 $('tiles').innerHTML=stories.map(s=>'<button class="tile" data-id="'+s.id+'"><div class="art '+s.id+'">'+s.emoji+'</div><div class="detail"><span class="arrow">↗</span><strong>'+s.name+'</strong><small>'+s.more+'</small></div></button>').join('');document.querySelectorAll('.tile').forEach(b=>b.onclick=()=>start(b.dataset.id));$('homebtn').onclick=home;const hash=location.hash.slice(1);if(stories.some(s=>s.id===hash))start(hash);
-$('tiles').insertAdjacentHTML('beforeend','<a class="tile" href="./chapter7.html" style="display:block;text-decoration:none"><div class="art" style="background:linear-gradient(155deg,#333b62,#8c789a 52%,#efb4a6);height:172px;display:grid;place-items:center;font-size:78px">🎟️</div><div class="detail"><span class="arrow">↗</span><strong>那晚的第二張票</strong><small>第七篇 · 少字漫畫互動短篇</small></div></a>');
+$('tiles').insertAdjacentHTML('beforeend','<a class="tile" href="./chapter7.html" style="display:block;text-decoration:none"><div class="art" style="background:linear-gradient(155deg,#333b62,#8c789a 52%,#efb4a6);height:172px;display:grid;place-items:center;font-size:78px">📷</div><div class="detail"><span class="arrow">↗</span><strong>第八張照片</strong><small>第七篇 · 寫實攝影互動短篇</small></div></a>');
 </script></body></html>
