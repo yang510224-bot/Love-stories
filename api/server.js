@@ -1,4 +1,5 @@
 'use strict';
+void require('./eleven-preflight').preflight();
 void require('./music-preflight').preflight();
 void require('./music-smoke').run();
 void require('./music-production').run();
