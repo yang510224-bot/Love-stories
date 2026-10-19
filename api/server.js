@@ -1,5 +1,5 @@
 'use strict';
-void require('./eleven-preflight').preflight();
+if(process.env.ELEVEN_PREFLIGHT_ENABLED==='1') void require('./eleven-preflight').preflight();
 void require('./music-preflight').preflight();
 void require('./music-smoke').run();
 void require('./music-production').run();
