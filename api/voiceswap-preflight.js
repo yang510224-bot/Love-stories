@@ -11,6 +11,9 @@ async function preflight({key=process.env.VOICE_SWAP_API_KEY||process.env.Voice_
   const models=await request('https://api.voice-swap.ai/v1/models?type=v2v',{method:'GET',headers:{Authorization:'Bearer '+tokens.access_token},redirect:'error',signal:AbortSignal.timeout(20000)});
   r.modelsStatus=models.status;if(!models.ok)return r;
   const data=await models.json();
+  r.responseKeys=Object.keys(data).slice(0,20);
+  r.modelCount=Array.isArray(data.models)?data.models.length:null;
+  r.modelFieldNames=Array.isArray(data.models)&&data.models.length?Object.keys(data.models[0]).slice(0,40):[];
   r.publicModels=(Array.isArray(data.models)?data.models:[]).filter(m=>m.is_private===false&&m.is_owned_by_user!==true).slice(0,80).map(m=>({id:typeof m.id==='string'?m.id.slice(0,100):null,name:typeof m.name==='string'?m.name.slice(0,100):null,description:typeof m.description==='string'?m.description.slice(0,250):null,has_audio:m.has_audio===true,version:Number.isFinite(m.version)?m.version:null}));
   r.authenticated=true;
   return r;
