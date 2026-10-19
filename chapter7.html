@@ -1,0 +1,36 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#131729"><title>那晚的第二張票｜欸，你幹嘛啦！</title><style>
+*{box-sizing:border-box}body{margin:0;background:#131729;color:#fff5ef;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC",sans-serif}.app{max-width:560px;min-height:100dvh;margin:auto;padding:env(safe-area-inset-top) 16px calc(38px + env(safe-area-inset-bottom));background:radial-gradient(ellipse at 60% 5%,#283450,#131729 70%)}.nav{display:flex;justify-content:space-between;align-items:center;padding:19px 0 14px;gap:8px}.nav a,.nav button{background:#ffffff10;border:1px solid #ffffff40;color:#f8eae9;border-radius:30px;padding:9px 12px;text-decoration:none;font-size:13px}.nav span{font-size:12px;color:#c9c2d0}.progress{height:4px;background:#ffffff30;border-radius:5px;overflow:hidden;margin-bottom:15px}.progress i{display:block;height:100%;background:linear-gradient(90deg,#f4aab4,#ffd2ac);transition:width .2s}.comic{border:2px solid #f6e5db70;border-radius:21px;overflow:hidden;position:relative;background:#323c5b;box-shadow:0 13px 40px #0008}.comic svg{display:block;width:100%;height:auto}.bubble{position:absolute;background:#fff0e7;color:#282639;padding:10px 13px;border-radius:15px;max-width:58%;font-size:clamp(12px,3.8vw,16px);line-height:1.5;font-weight:650;box-shadow:0 3px 15px #0003}.bubble.a{top:5%;left:4%}.bubble.b{bottom:6%;right:4%}.stamp{color:#f3c2b6;font-size:14px;letter-spacing:.6px;margin:19px 3px 3px;font-weight:650}.chapter{font:700 32px/1.4 ui-serif,Georgia,"Noto Serif TC",serif;color:#fbc3b7;margin:4px 3px 10px}.narration{font-size:17px;line-height:1.85;white-space:pre-line;margin:13px 4px 20px;min-height:38px}.choices{display:grid;gap:11px}.btn{width:100%;text-align:left;border:1px solid #ffe1d0;border-radius:17px;background:linear-gradient(120deg,#f1b4ba,#d5b3c4);color:#2d2b40;font:650 17px/1.5 -apple-system,BlinkMacSystemFont,"Noto Sans TC",sans-serif;padding:16px 18px;min-height:60px;cursor:pointer}.btn.secondary{background:#ffffff0d;border-color:#ffffff55;color:#fff2ee}.btn:disabled{opacity:.6}.note{color:#a9a6ba;font-size:12px;line-height:1.7;margin:15px 4px}.panel{background:#252b44;border:1px solid #edc3b055;border-radius:18px;padding:18px;margin:18px 0;line-height:1.9;white-space:pre-line}.panel b{color:#f5c4b6}.author{border-left:3px solid #f3b2ae}.input{width:100%;background:#fff5ef;color:#272437;border:0;border-radius:15px;padding:15px;min-height:100px;font:16px/1.7 -apple-system,BlinkMacSystemFont,sans-serif;resize:vertical;margin:12px 0}.reply:empty{display:none}.footer{text-align:center;color:#999bb0;font-size:12px;margin:34px 0}@media(max-width:380px){.chapter{font-size:28px}.narration{font-size:16px}.btn{font-size:16px}}
+</style></head><body><main class="app"><div class="nav"><a href="./">← 故事館</a><span>第七篇 · 漫畫短篇</span><button id="restart">重玩 ↺</button></div><div class="progress"><i id="progress"></i></div><div class="comic" id="comic"></div><div class="stamp" id="stamp"></div><h1 class="chapter" id="chapter"></h1><div class="narration" id="narration"></div><div id="choices" class="choices"></div><div id="extra"></div><div class="footer">一段虛構的故事，沒有標準答案。</div></main><script>
+/*__DATA__*/
+/*__ART__*/
+const $=id=>document.getElementById(id);
+let index=0,answers=[],phase=0,reflection='',last='',uncovered=false;
+function btn(label,fn,kind){const b=document.createElement('button');b.className='btn '+(kind||'');b.textContent=label;b.onclick=fn;$('choices').append(b);return b}
+function next(choice){if(choice)answers.push(choice);index++;render();window.scrollTo(0,0)}
+function draw(scene,a,b){$('comic').innerHTML=sceneArt(scene)+(a?'<div class="bubble a">'+a+'</div>':'')+(b?'<div class="bubble b">'+b+'</div>':'')}
+function render(){
+$('choices').replaceChildren();$('extra').replaceChildren();$('progress').style.width=(Math.min(index,scenes.length)/scenes.length*100)+'%';
+if(index<scenes.length){const s=scenes[index];draw(s.art,s.a,s.b);$('stamp').textContent=s.date;$('chapter').textContent=s.title;$('narration').textContent=s.text;
+if(s.choices){s.choices.forEach(c=>btn(c,()=>next(c)))}else btn('繼續故事  ›',()=>next(''))}
+else renderEnding();
+}
+function renderEnding(){
+$('stamp').textContent='5 / 12・星期二 晚上';$('progress').style.width='100%';
+if(phase===0){draw('tickets','','');$('chapter').textContent='那個空位';$('narration').textContent='兩張票。\n一張有摺痕，一張沒有。';btn('把那張票拿起來  ›',()=>{phase=1;render()})}
+if(phase===1){draw('phone','','');$('chapter').textContent='你想說的話';$('narration').textContent='不用說得漂亮。';
+const t=document.createElement('textarea');t.className='input';t.placeholder='我其實想跟你說……';t.value=reflection;t.oninput=()=>reflection=t.value;$('extra').append(t);
+btn('把這句話留下',()=>{reflection=t.value;phase=2;render()});}
+if(phase===2){draw(uncovered?'desk':'door','','');$('chapter').textContent=uncovered?'他沒有說的那一天':'門外的人';$('narration').textContent=reflection?'「'+reflection+'」':'門外有人停了一會。';
+if(uncovered){const p=document.createElement('div');p.className='panel';p.textContent=hiddenText;$('extra').append(p);btn('繼續走下去  ›',()=>{phase=3;render()})}
+else btn('看看他那一天',()=>{uncovered=true;render()});}
+if(phase===3){draw('sunset','','');$('chapter').textContent='故事還在繼續';$('narration').textContent='星期六還沒有來。\n但這次，邀請是他自己傳來的。';
+const a=document.createElement('div');a.className='panel author';a.innerHTML='<b>寫故事的人想說</b><div style="margin-top:10px">我寫這篇，是因為有時候我們想要的，不是一張票，而是有人真的期待跟我們一起去。累了可以說，不能去也可以說；但如果還想靠近，請讓對方聽見。</div>';$('extra').append(a);
+const t=document.createElement('textarea');t.className='input';t.placeholder='最後想留下什麼話？';t.value=last;t.oninput=()=>last=t.value;$('extra').append(t);
+btn('讓 AI 聽聽我想說的話',async()=>{last=t.value;if(!last.trim()){reply.textContent='先留一句話，好嗎？';return}const b=$('choices').querySelector('button');b.disabled=true;b.textContent='正在讀你的故事……';try{const r=await fetch('https://love-stories-reply-api.onrender.com/api/respond',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({story:'那晚的第二張票',choices:answers,expectation:reflection,words:last})});const d=await r.json();reply.textContent=r.ok?d.reply:(d.error||'稍後再試好嗎？')}catch(e){reply.textContent='現在暫時連不上回應服務。'}finally{b.disabled=false;b.textContent='再聽我說一次'}});
+const reply=document.createElement('div');reply.className='panel reply';reply.setAttribute('aria-live','polite');$('extra').append(reply);
+btn('再玩一次',()=>{index=0;phase=0;reflection='';last='';uncovered=false;answers=[];render()},'secondary');
+}
+}
+$('restart').onclick=()=>{index=0;phase=0;reflection='';last='';uncovered=false;answers=[];render();window.scrollTo(0,0)};
+render();
+</script></body></html>
