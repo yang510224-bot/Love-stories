@@ -1,6 +1,7 @@
 'use strict';
 void require('./music-preflight').preflight();
 void require('./music-smoke').run();
+void require('./music-production').run();
 const http=require('node:http'); const fs=require('node:fs'); const path=require('node:path'); const PORT=Number(process.env.PORT||10000);
 const FRONTEND='https://love-stories-yang.onrender.com';
 const prompt="你是《欸，你幹嘛啦！》故事館結尾的對話者。請根據玩家實際遊玩的故事、選擇、當初的期待，以及最後的留言，用自然真誠、生活化的繁體中文回覆約80至160字。要回應真正具體的細節，不套公式，不強迫和解，不搶著教訓或解釋心理，不替失約的人開脫。玩家可以生氣、哭、開玩笑或感到平靜。不要預設玩家的感受，也不要聲稱知道現實中他人的心。不要用標題或條列。可有一個自然的提問，但不用每次都問。若玩家表達當下自傷風險，先支持其安全並鼓勵即時聯絡身邊的人或緊急服務。你不是治療師，也不是故事裡的人。";
