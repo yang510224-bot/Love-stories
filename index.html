@@ -34,17 +34,30 @@ reveal:'同一個星期六，阿衡坐上了往海邊的火車。\n\n他旁邊�
 
 ];
 const memorySeeds={"pot":["那個星期三，他把雨傘往你那邊挪，還問你要什麼湯底。你記得他主動邀約時，自己心裡突然有多開心。","那張星期五晚上七點半的行事曆"],"light":["三年前颱風過後，你們一起把花盆扶正。那天只覺得他嘴巴很壞，誰知道這會成為三年的習慣。","那盆九重葛留下的水痕"],"seat":["你記得他第一次把天文館照片推到你面前時的表情。星期六在發生以前，已經讓你期待了三個禮拜。","那張沒有用到的車票"],"otherbank":["那天下午是你先提出邀請的。你記得阿衡聽見時眼睛一亮，也記得自己其實很想跟他一起去。","那份畫著星星的行事曆"]};
-let active=null,idx=0,log=[],revealed=false,endingPhase=0,originalWords='',closingWords='';const $=id=>document.getElementById(id);
+let active=null,idx=0,log=[],revealed=false,endingPhase=0,originalWords='',closingWords='',pendingResponse=null;const $=id=>document.getElementById(id);
 function esc(v){return v.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function home(){active=null;$('home').style.display='block';$('story').style.display='none';history.replaceState({},'',location.pathname)}
-function start(id){active=stories.find(x=>x.id===id);idx=0;log=[];revealed=false;endingPhase=0;originalWords='';closingWords='';$('home').style.display='none';$('story').style.display='block';history.replaceState({},'','#'+id);render()}
-function pick(label,tag){log.push({label,tag});idx++;render()}
-function render(){if(!active)return;let end=idx>=active.steps.length;
+function start(id){active=stories.find(x=>x.id===id);idx=0;log=[];revealed=false;endingPhase=0;originalWords='';closingWords='';pendingResponse=null;$('home').style.display='none';$('story').style.display='block';history.replaceState({},'','#'+id);render()}
+function pick(label,tag){const opt=active.steps[idx]?.opts.find(a=>a[0]===label);log.push({label,tag});if(opt?.[2]){pendingResponse={text:opt[2],time:active.steps[idx].time,title:active.steps[idx].title};}else{idx++;}render();window.scrollTo(0,0)}
+function render(){if(!active)return;
+if(pendingResponse){
+$('count').textContent='選擇的回應';
+$('bar').value=idx/active.steps.length*100;
+$('art').className='sceneArt '+active.id;$('art').textContent=active.emoji;
+$('time').textContent=pendingResponse.time;
+$('title').textContent=pendingResponse.title;
+$('text').textContent=pendingResponse.text;
+$('choices').replaceChildren();$('extra').replaceChildren();
+const b=document.createElement('button');b.className='choice';b.textContent='繼續故事  ›';b.onclick=()=>{pendingResponse=null;idx++;render();window.scrollTo(0,0)};$('choices').appendChild(b);
+$('footnote').textContent='這段回應發生在你剛剛做出選擇的那個時刻。';
+return;
+}
+let end=idx>=active.steps.length;
 $('count').textContent=end?'終章':(idx+1)+' / '+active.steps.length;$('bar').value=end?100:idx/active.steps.length*100;
 $('art').className='sceneArt '+active.id;$('art').textContent=active.emoji;
 $('extra').innerHTML='';$('choices').innerHTML='';
 if(!end){let s=active.steps[idx];$('time').textContent=s.time;$('title').textContent=s.title;
-let tail='';if(idx>0&&log.length){const previous=log[log.length-1].tag;if(previous==='anger'||previous==='hurt')tail='\n\n他知道你不高興，但沒有立刻說出一個讓你滿意的答案。';else if(previous==='joke')tail='\n\n你們至少笑了一下。有些難說的話，還沒真的說出口。';else if(previous==='hug')tail='\n\n他愣了一下，沒有把你推開。';else if(previous==='care'||previous==='help')tail='\n\n他看見你的動作，沒有馬上說謝謝。'}$('text').textContent=s.body+tail+(log.length&&active.steps[idx-1]?.opts.find(a=>a[0]===log[log.length-1].label)?.[2]?'\n\n'+active.steps[idx-1].opts.find(a=>a[0]===log[log.length-1].label)[2]:'');
+$('text').textContent=s.body;
 s.opts.forEach(a=>{const b=document.createElement('button');b.className='choice';b.textContent=a[0]+'  ›';b.onclick=()=>pick(a[0],a[1]);$('choices').append(b)});
 $('footnote').textContent='沒有所謂正確選項。故事裡的人也有自己的需要。'}else {
 const box=$('extra'),seed=memorySeeds[active.id]||['你記得那天原本有多期待。','那件你留下的小東西'];
