@@ -21,7 +21,7 @@ http.createServer(async(req,res)=>{
  try{
  const content=JSON.stringify({故事:d.story,遊玩選擇:d.choices.slice(0,15).map(x=>String(x).slice(0,140)),原本的期待:String(d.expectation||'').slice(0,800),玩家留下的話:d.words});
  const r=await fetch('https://api.openai.com/v1/responses',{method:'POST',headers:{Authorization:'Bearer '+process.env.OPENAI_API_KEY,'Content-Type':'application/json'},signal:AbortSignal.timeout(22000),body:JSON.stringify({model:process.env.OPENAI_MODEL||'gpt-4.1',instructions,input:content,max_output_tokens:450,store:false})});
- const result=await r.json();if(!r.ok){console.error('upstream',r.status);return send(res,502,{error:'現在暫時連不上回應服務，稍後再試好嗎？'})}
+ const result=await r.json();if(!r.ok){console.error('upstream',r.status);if(r.status===401)return send(res,503,{error:'站長設定的 OpenAI API 金鑰未通過驗證，請稍後再來。'});if(r.status===429)return send(res,503,{error:'AI 服務目前受到額度或頻率限制，請稍後再來。'});return send(res,502,{error:'AI 服務暫時無法回答，請稍後再試。'})}
  const reply=(result.output||[]).flatMap(x=>x.content||[]).filter(x=>x.type==='output_text').map(x=>x.text).join('').trim();
  if(!reply)return send(res,502,{error:'這次沒有收到回應，請再試一次。'});
  return send(res,200,{reply:reply.slice(0,1200)});
