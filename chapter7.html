@@ -11,7 +11,7 @@ const scenes=[
 {date:'5 / 11・星期一 22:07',title:'那張票',art:'tickets',a:'',b:'',text:'一張有摺痕。\n另一張還是平的。'},
 {date:'5 / 12・星期二 19:31',title:'門外的人',art:'door',a:'「欸，昨天……」',b:'',text:'他站在門口。\n這次沒有拿飲料。'}
 ];
-const hiddenText='他真的累到不想出門。\n\n但昨天，他看見你發的星空照片，才突然明白：你想看的不是星星。\n\n他沒有馬上要求你原諒。\n\n他把下星期六空下來，查好車次，傳來一句：\n「欸，這次我來約你，好不好？」';
+const hiddenText='他是真的累。\n\n但看著你們說好的那一天，他才想起：\n你期待的是他，不是天文館。\n\n他沒有要你立刻原諒。\n\n這次他先空下時間。\n「下星期六，換我約你，好不好？」';
 
 function person(x,y,s,white){
 const cloth=white?'#dfc7c4':'#313951',hair=white?'#4b3942':'#20283b';
@@ -40,6 +40,9 @@ function draw(scene,a,b){$('comic').innerHTML=sceneArt(scene)+(a?'<div class="bu
 function render(){
 $('choices').replaceChildren();$('extra').replaceChildren();$('progress').style.width=(Math.min(index,scenes.length)/scenes.length*100)+'%';
 if(index<scenes.length){const s=scenes[index];draw(s.art,s.a,s.b);$('stamp').textContent=s.date;$('chapter').textContent=s.title;$('narration').textContent=s.text;
+if(index===3&&answers[0]?.includes('換你約'))$('narration').textContent+='\n你已經說過，下次換他約。';
+if(index===5&&answers[1]?.includes('手機收起來'))$('narration').textContent+='\n你把這一天留給自己。';
+if(index===5&&answers[1]?.includes('如果你在'))$('narration').textContent+='\n那句話還停在輸入框。';
 if(s.choices){s.choices.forEach(c=>btn(c,()=>next(c)))}else btn('繼續故事  ›',()=>next(''))}
 else renderEnding();
 }
