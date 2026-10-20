@@ -1,3 +1,7 @@
+# 最新增量：第八幕確認時序已修復
+
+見 [TIMING_ACCEPTANCE_20261020.md](TIMING_ACCEPTANCE_20261020.md) 及 [PICKUP_PLAN_20261020.md](PICKUP_PLAN_20261020.md)。新版Test d985922 已部署並操作驗證。自然雙人／笑場及Safari實機仍未通過，不發布正式站。以下為歷史紀錄。
+
 # 本輪最新狀態（2026-10-20 Test修復）
 
 本輪唯一有效結論見 [TEST_ACCEPTANCE_20261020.md](TEST_ACCEPTANCE_20261020.md)。Test已部署73b14a5；35項測試通過、18項線上素材一致。新增雙聲線混音候選及結局播放，但自然雙人演唱、笑場、iPhone Safari實機未完成，releaseReady=false。正式站本輪未修改。以下舊時間點紀錄僅供追溯，不代表目前狀態。
