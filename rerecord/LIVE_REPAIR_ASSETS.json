@@ -1,0 +1,92 @@
+[
+  {
+    "path": "audio/story-duet-original-v2.mp3",
+    "bytes": 361787,
+    "matchesLocal": true
+  },
+  {
+    "path": "audio/story-modified-v2.mp3",
+    "bytes": 361787,
+    "matchesLocal": true
+  },
+  {
+    "path": "audio/story-duet-restored-v2.mp3",
+    "bytes": 361787,
+    "matchesLocal": true
+  },
+  {
+    "path": "audio/story-solo-v2.mp3",
+    "bytes": 361787,
+    "matchesLocal": true
+  },
+  {
+    "path": "assets/09-memory.webp",
+    "bytes": 129254,
+    "matchesLocal": true
+  },
+  {
+    "path": "assets/03-laugh.webp",
+    "bytes": 139772,
+    "matchesLocal": true
+  },
+  {
+    "path": "assets/08-solo.webp",
+    "bytes": 149142,
+    "matchesLocal": true
+  },
+  {
+    "path": "assets/06-distance.webp",
+    "bytes": 150932,
+    "matchesLocal": true
+  },
+  {
+    "path": "assets/02-names.webp",
+    "bytes": 121204,
+    "matchesLocal": true
+  },
+  {
+    "path": "assets/10-words.webp",
+    "bytes": 118258,
+    "matchesLocal": true
+  },
+  {
+    "path": "assets/07-return-v2.webp",
+    "bytes": 104682,
+    "matchesLocal": true
+  },
+  {
+    "path": "assets/04-again.webp",
+    "bytes": 108998,
+    "matchesLocal": true
+  },
+  {
+    "path": "assets/08-hold.webp",
+    "bytes": 140870,
+    "matchesLocal": true
+  },
+  {
+    "path": "assets/08-duet.webp",
+    "bytes": 139266,
+    "matchesLocal": true
+  },
+  {
+    "path": "assets/11-hidden.webp",
+    "bytes": 126594,
+    "matchesLocal": true
+  },
+  {
+    "path": "assets/01-fridge.webp",
+    "bytes": 148338,
+    "matchesLocal": true
+  },
+  {
+    "path": "assets/05-listen-v2.webp",
+    "bytes": 103418,
+    "matchesLocal": true
+  },
+  {
+    "path": "assets/09-fridge-v2.webp",
+    "bytes": 126402,
+    "matchesLocal": true
+  }
+]
