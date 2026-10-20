@@ -1,6 +1,7 @@
 'use strict';
 if(process.env.VOICE_SWAP_PREFLIGHT_ENABLED==='1') void require('./voiceswap-preflight').preflight();
 const voiceTest=require('./eleven-test');
+const swapTest=require('./voiceswap-test').create();
 void voiceTest.run();
 if(process.env.ELEVEN_PREFLIGHT_ENABLED==='1') void require('./eleven-preflight').preflight();
 void require('./music-preflight').preflight();
@@ -14,6 +15,7 @@ const instructions=prompt+'\n\n'+core;
 const rate=new Map();
 function send(res,status,obj){res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Access-Control-Allow-Origin':FRONTEND,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(JSON.stringify(obj))}
 http.createServer(async(req,res)=>{
+ if(swapTest.serve(req,res))return;
  if(voiceTest.serve(req,res))return;
  if(req.method==='OPTIONS'){res.writeHead(204,{'Access-Control-Allow-Origin':FRONTEND,'Access-Control-Allow-Methods':'POST, OPTIONS','Access-Control-Allow-Headers':'Content-Type'});return res.end()}
  if(req.url==='/health')return send(res,200,{ok:true,configured:!!process.env.OPENAI_API_KEY});
