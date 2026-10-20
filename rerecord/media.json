@@ -1,0 +1,32 @@
+{
+  "releaseReady": false,
+  "audio": {
+    "original": "audio/story-original-excerpt.mp3",
+    "replacement": "audio/story-replacement-excerpt.mp3"
+  },
+  "images": {
+    "09-memory": "assets/09-memory.webp",
+    "03-laugh": "assets/03-laugh.webp",
+    "08-solo": "assets/08-solo.webp",
+    "06-distance": "assets/06-distance.webp",
+    "02-names": "assets/02-names.webp",
+    "10-words": "assets/10-words.webp",
+    "07-return": "assets/07-return-v2.webp",
+    "04-again": "assets/04-again.webp",
+    "08-hold": "assets/08-hold.webp",
+    "08-duet": "assets/08-duet.webp",
+    "11-hidden": "assets/11-hidden.webp",
+    "01-fridge": "assets/01-fridge.webp",
+    "05-listen": "assets/05-listen-v2.webp",
+    "09-fridge": "assets/09-fridge-v2.webp"
+  },
+  "qa": {
+    "singingAudition": false,
+    "sameMelody": true,
+    "characterVoices": false,
+    "laughter": false,
+    "iphoneBrowser": false,
+    "liveAiReply": false
+  },
+  "note": "Test only. User prefers replacement voice B. Fifteen-second same-performance excerpts integrated; laughter and full browser/AI acceptance remain incomplete."
+}
