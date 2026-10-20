@@ -39,3 +39,15 @@ test('blocked play remains retryable without false listening history',async()=>{
  const p=playback(),a=entry();let recorded=false;a.audio.play=()=>Promise.reject(Error('NotAllowedError'));
  await p.toggle(a,()=>recorded=true);assert.match(a.button.textContent,/重試/);assert.equal(recorded,false);
 });
+
+for(const plan of ['duet','solo','hold'])test(`scene eight waits for recording confirmation: ${plan}`,()=>{
+ let s=initial();for(const id of ['rival','first','promise','only','direct','ask',plan])s=advance(choose(s,id));
+ assert.equal(s.step,7);assert.equal(s.outcome,null);assert.deepEqual(audioCues(s),[]);
+ assert.deepEqual(audioCues(restore(s)),[]);
+ for(const recording of ['copy','keep','delete']){
+  const confirmed=choose(s,recording);
+  const expected=plan==='solo'?['solo']:plan==='duet'&&recording!=='delete'?['final-duet']:[];
+  assert.deepEqual(audioCues(confirmed).map(x=>x.key),expected);
+  assert.deepEqual(audioCues(restore(confirmed)),audioCues(confirmed));
+ }
+});

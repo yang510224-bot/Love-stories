@@ -86,7 +86,8 @@ export function audioCues(s) {
   if(s.step===3)cues.push({key:'original',label:'聽下午的雙人錄音'});
   if(s.step===4)cues.push({key:'original',label:'聽下午的雙人錄音'},{key:'replacement',label:'聽立衡修改的版本'});
   if(s.step===7||s.step===8){
-    const result=s.outcome||(s.step===7&&!s.pending?s.plan:null);
+    // A plan is not confirmation: expose the result only after recording handling.
+    const result=s.recordings?s.outcome:null;
     if(result==='duet')cues.push({key:'final-duet',label:'聽恢復雙人演唱的版本'});
     if(result==='solo')cues.push({key:'solo',label:'聽立衡個人演唱版'});
   }
