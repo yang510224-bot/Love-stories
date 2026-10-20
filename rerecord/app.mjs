@@ -1,39 +1,38 @@
-import {initial,scene,choose,advance,AUTHOR,aiPayload,outcomeText} from './model.mjs';
+import {initial,scene,choose,advance,AUTHOR,aiPayload,outcomeText,audioCues,restore} from './model.mjs';
+import {playback} from './playback.mjs';
 
 const $=id=>document.getElementById(id);
-let state=initial(),media,enabled=false,playing=null,busy=false;
+let state=initial(),media,enabled=false,busy=false;
+let replyRequest=null;
+const transport=playback();
 const players=[];
 const playerLabels=new Map();
 const STORAGE='rerecord-progress-v1';
 const save=()=>{try{sessionStorage.setItem(STORAGE,JSON.stringify(state));}catch{}};
-function stopAudio(){for(const p of players){p.pause();p.currentTime=0;const item=playerLabels.get(p);if(item)item.button.textContent=item.label;}playing=null;}
+function stopAudio(){transport.stop();for(const p of players){p.pause();p.removeAttribute('src');p.load();}players.splice(0);playerLabels.clear();}
 function el(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;}
 function button(text,fn,cls='choice'){const n=el('button',text,cls);n.type='button';n.addEventListener('click',fn);return n;}
 function image(name,alt){$('image-error').hidden=true;$('image').src=media.images?.[name]||`assets/${name}.png`;$('image').alt=alt;}
 $('image').addEventListener('error',()=>{$('image-error').hidden=false;});
 $('reload-image').onclick=()=>{const src=$('image').src;$('image').src='';$('image').src=src;};
-$('sound').onclick=()=>{enabled=!enabled;$('sound').textContent=enabled?'聲音開啟':'聲音關閉';$('sound').setAttribute('aria-pressed',String(enabled));if(!enabled)stopAudio();renderAudio();};
+$('sound').onclick=()=>{enabled=!enabled;$('sound').textContent=enabled?'聲音開啟':'聲音關閉';$('sound').setAttribute('aria-pressed',String(enabled));if(!enabled)transport.pause();};
 function mountPlayer(key,label){
  const source=media.audio?.[key];
- if(!source){$('audio-area').append(el('p','此段笑場錄音尚待完成。驗收版未提供替代音訊。','audio-note'));return;}
- const p=new Audio(source);p.preload='metadata';players.push(p);
+ if(!source){$('audio-area').append(el('p',key.startsWith('laugh-')?'此段笑場錄音尚待完成。驗收版未提供替代音訊。':'此演唱版本尚未完成，不能播放。','audio-note'));return;}
+ if(media.audioStatus?.[key]==='mix-candidate')$('audio-area').append(el('p','雙聲線混音候選 · 尚未通過自然度與咬字驗收','audio-note'));
+ const p=document.createElement('audio');p.src=source;p.preload='metadata';p.hidden=true;p.dataset.track=key;players.push(p);
  const b=button(label,async()=>{
   if(!enabled){enabled=true;$('sound').textContent='聲音開啟';$('sound').setAttribute('aria-pressed','true');}
-  if(playing===p&&!p.paused){p.pause();b.textContent=label;return;}
-  stopAudio();playing=p;b.textContent='播放中 · 點一下暫停';
-  try{await p.play();if(!state.heard.includes(key)){state.heard.push(key);save();}}catch{b.textContent='未能播放 · 點一下重試';}
+  b.disabled=true;
+  try{await transport.toggle(playerLabels.get(p),()=>{if(!state.heard.includes(key)){state.heard.push(key);save();}});}finally{b.disabled=false;}
  },'audio-control');
- playerLabels.set(p,{button:b,label});
- p.onended=()=>{b.textContent=label;playing=null;};p.onerror=()=>{b.textContent='音訊未能載入 · 點一下重試';};
- $('audio-area').append(b);
+ playerLabels.set(p,{audio:p,button:b,label});
+ p.onended=()=>{b.textContent=label;};p.onerror=()=>{b.textContent='音訊未能載入 · 點一下重試';};
+ $('audio-area').append(p,b);
 }
 function renderAudio(){
- stopAudio();for(const p of players){p.removeAttribute('src');p.load();}players.splice(0);playerLabels.clear();$('audio-area').replaceChildren();
- if(state.ending)return;
- const row=scene(state);
- if(state.step===2&&state.pending)mountPlayer(`laugh-${state.choices[2]}`,'聽一下錄音前的聲音');
- if(row.audio==='comparison'){mountPlayer('original','聽下午錄下的版本');mountPlayer('replacement','聽現在的版本');}
- if(row.audio==='memory'&&state.recordings!=='delete')mountPlayer(`laugh-${state.choices[2]||'bump'}`,'播放這段開頭');
+ stopAudio();$('audio-area').replaceChildren();
+ for(const cue of audioCues(state))mountPlayer(cue.key,cue.label);
 }
 function focusTitle(){requestAnimationFrame(()=>$('title').focus({preventScroll:true}));}
 function clearContent(){stopAudio();$('choices').replaceChildren();$('extra').replaceChildren();$('audio-area').replaceChildren();$('detail').hidden=true;}
@@ -76,19 +75,21 @@ function renderEnding(){
  if(state.words.trim()){
   const send=button(state.reply?'重新請法器回應':'請法器回應',async()=>{
    if(busy)return;busy=true;send.disabled=true;send.textContent='法器正在讀你的經歷…';reply.textContent='';
+   const targetState=state;const controller=new AbortController();replyRequest=controller;
+   const timer=setTimeout(()=>controller.abort(),65000);
    try{
-    const r=await fetch('https://love-stories-reply-api.onrender.com/api/respond',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(aiPayload(state)),signal:AbortSignal.timeout(65000)});
-    const d=await r.json();if(!r.ok||typeof d.reply!=='string')throw Error(d.error||'這次沒有收到回覆。');state.reply=d.reply;reply.textContent=d.reply;save();
-   }catch(e){reply.textContent=`暫時未能取得回應。你的留言仍保留在這個分頁。\n${e.name==='TimeoutError'?'連線逾時，可以稍後再試。':e.message}`;}
-   finally{busy=false;send.disabled=false;send.textContent=state.reply?'重新請法器回應':'再試一次';}
+    const r=await fetch('https://love-stories-reply-api.onrender.com/api/respond',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(aiPayload(targetState)),signal:controller.signal});
+    const d=await r.json();if(state!==targetState)return;if(!r.ok||typeof d.reply!=='string')throw Error(d.error||'這次沒有收到回覆。');state.reply=d.reply;reply.textContent=d.reply;save();
+   }catch(e){if(state===targetState)reply.textContent=`暫時未能取得回應。你的留言仍保留在這個分頁。\n${e.name==='AbortError'?'連線逾時，可以稍後再試。':e.message}`;}
+   finally{clearTimeout(timer);if(replyRequest===controller){replyRequest=null;busy=false;send.disabled=false;send.textContent=state.reply?'重新請法器回應':'再試一次';}}
   },'primary');$('extra').append(send);
  }else $('extra').append(el('p','你沒有留下留言，因此不會傳送資料或生成 AI 回應。','audio-note'));
- $('extra').append(button('重新走一次',()=>{state=initial();save();render();window.scrollTo({top:0,behavior:'instant'});},'secondary'));
+ $('extra').append(button('重新走一次',()=>{replyRequest?.abort();replyRequest=null;busy=false;state=initial();save();render();window.scrollTo({top:0,behavior:'instant'});},'secondary'));
 }
 try{
  const response=await fetch('media.json',{cache:'no-store'});if(!response.ok)throw Error('素材清單載入失敗');media=await response.json();
  $('preview').hidden=media.releaseReady===true;
  let saved;try{saved=JSON.parse(sessionStorage.getItem(STORAGE));}catch{}
- if(saved?.version===1&&Number.isInteger(saved.step)&&saved.step>=0&&saved.step<=9&&saved.choices&&Array.isArray(saved.log)&&Array.isArray(saved.heard))state={...initial(),...saved};
+ state=restore(saved);
  render();
 }catch{$('title').textContent='暫時無法開啟故事';$('text').textContent='素材清單未能載入，請重新整理後再試。';}

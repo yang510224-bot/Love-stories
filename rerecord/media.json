@@ -1,8 +1,10 @@
 {
   "releaseReady": false,
   "audio": {
-    "original": "audio/story-original-excerpt.mp3",
-    "replacement": "audio/story-replacement-excerpt.mp3"
+    "original": "audio/story-duet-original-v2.mp3",
+    "replacement": "audio/story-modified-v2.mp3",
+    "final-duet": "audio/story-duet-restored-v2.mp3",
+    "solo": "audio/story-solo-v2.mp3"
   },
   "images": {
     "09-memory": "assets/09-memory.webp",
@@ -26,7 +28,12 @@
     "characterVoices": false,
     "laughter": false,
     "iphoneBrowser": false,
-    "liveAiReply": false
+    "liveAiReply": true
   },
-  "note": "Test only. User prefers replacement voice B. Fifteen-second same-performance excerpts integrated; laughter and full browser/AI acceptance remain incomplete."
+  "note": "Test repair: two-timbre unison mixes from existing source + B; not independent performances or approved natural duet. Restored duet is the unchanged original mix. Solo contains B only. No paid calls. Laughter and real iPhone Safari acceptance remain incomplete.",
+  "audioStatus": {
+    "original": "mix-candidate",
+    "replacement": "mix-candidate",
+    "final-duet": "mix-candidate"
+  }
 }

@@ -78,6 +78,38 @@ export function advance(s) {
   if (!s.pending) throw new Error('No response to advance');
   return { ...s, step: s.step + 1, pending: null };
 }
+// Playback follows the actual branch; deleted character recordings cannot return.
+export function audioCues(s) {
+  if(s.ending)return [];
+  let cues=[];
+  if(s.step===2&&s.pending)cues.push({key:`laugh-${s.choices[2]}`,label:'聽一下錄音前的聲音'});
+  if(s.step===3)cues.push({key:'original',label:'聽下午的雙人錄音'});
+  if(s.step===4)cues.push({key:'original',label:'聽下午的雙人錄音'},{key:'replacement',label:'聽立衡修改的版本'});
+  if(s.step===7||s.step===8){
+    const result=s.outcome||(s.step===7&&!s.pending?s.plan:null);
+    if(result==='duet')cues.push({key:'final-duet',label:'聽恢復雙人演唱的版本'});
+    if(result==='solo')cues.push({key:'solo',label:'聽立衡個人演唱版'});
+  }
+  if(s.step===8&&s.recordings!=='delete')cues.push({key:`laugh-${s.choices[2]||'bump'}`,label:'播放這段開頭'});
+  if(s.recordings==='delete')cues=cues.filter(x=>x.key==='solo');
+  return cues;
+}
+export function restore(raw) {
+  if(!raw||raw.version!==VERSION||!Number.isInteger(raw.step)||raw.step<0||raw.step>9)return initial();
+  try{
+    let s=initial();
+    for(let i=0;i<raw.step;i++)s=advance(choose(s,raw.choices?.[i]));
+    if(raw.pending)s=choose(s,raw.choices?.[raw.step]);
+    s.words=typeof raw.words==='string'?raw.words.slice(0,1200):'';
+    s.recipient=['自己','予安','立衡'].includes(raw.recipient)?raw.recipient:'自己';
+    s.ending=s.step===9&&[0,1,2,3].includes(raw.ending)?raw.ending:0;
+    s.reveal=s.ending>=2&&raw.reveal===true;
+    if(s.ending===2&&!s.reveal)s.ending=1;
+    s.reply=s.ending===3&&typeof raw.reply==='string'?raw.reply.slice(0,1200):'';
+    s.heard=Array.isArray(raw.heard)?[...new Set(raw.heard.filter(x=>['original','replacement','final-duet','solo','laugh-bump','laugh-promise','laugh-breath'].includes(x)))]:[];
+    return s;
+  }catch{return initial();}
+}
 export function aiPayload(s) {
   return {
     story: '再錄一次｜予安與立衡，同居四年，共作情歌；立衡未經詢問換掉予安主唱',

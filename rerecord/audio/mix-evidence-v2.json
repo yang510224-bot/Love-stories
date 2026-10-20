@@ -1,0 +1,52 @@
+{
+  "sourceSeconds": 15,
+  "sampleRate": 44100,
+  "samplesPerChannel": 661500,
+  "newProviderCalls": 0,
+  "pitchShiftSemitones": 0,
+  "timeStretch": false,
+  "restoredIsExactOriginalMix": true,
+  "independentPerformances": false,
+  "voices": {
+    "yuan": "existing Mureka generated source",
+    "liheng": "existing Voice-Swap Liam Bailey conversion"
+  },
+  "modifiedBacking": {
+    "voice": "yuan",
+    "startsSeconds": 8.8,
+    "gainRelativeToSourceDb": -18
+  },
+  "soloContainsYuan": false,
+  "naturalDuetAccepted": false,
+  "limitations": [
+    "Unison two-timbre mix, not independently performed duet",
+    "No available source evidence establishes the written off-beat flaw",
+    "Laughter and spoken transitions absent"
+  ],
+  "outputs": {
+    "story-duet-original-v2": {
+      "wavSha256": "3d91ca4f8be1d5ec7de7a40bc834ceb8e27bf3e3ea53fb2d17277821294cc8ce",
+      "mp3Sha256": "9cc9df7c7906fff1c995bf4d7b23ef9e14970a662fef39f1c75b4eb2422e7b31",
+      "peak": 0.4244104969211744,
+      "seconds": 15
+    },
+    "story-modified-v2": {
+      "wavSha256": "0b9acc2278512b49b99a2e3846b8d1224b295424b522e729b76c132a839ea49e",
+      "mp3Sha256": "8108764e32fce5c5662b11959e1b1ac0f98e8a23b08ce1d0d122bfbe8c3d47ca",
+      "peak": 0.45391568678073246,
+      "seconds": 15
+    },
+    "story-duet-restored-v2": {
+      "wavSha256": "3d91ca4f8be1d5ec7de7a40bc834ceb8e27bf3e3ea53fb2d17277821294cc8ce",
+      "mp3Sha256": "9cc9df7c7906fff1c995bf4d7b23ef9e14970a662fef39f1c75b4eb2422e7b31",
+      "peak": 0.4244104969211744,
+      "seconds": 15
+    },
+    "story-solo-v2": {
+      "wavSha256": "b041420fedbb12b853ac9c97434d3affaa680ed097b18d790df9c5586de41d4f",
+      "mp3Sha256": "c333ac269de73d4aa8b7276e3201193995664ab3e6bc96111319fccaaead2f3e",
+      "peak": 0.45391568678073246,
+      "seconds": 15
+    }
+  }
+}
