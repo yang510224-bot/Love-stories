@@ -1,0 +1,25 @@
+{
+  "source": {
+    "source-vocal.wav": {
+      "samples": 661500,
+      "sampleRate": 44100,
+      "sha256": "f8ee3f202e5b5eaf61f5a1aeb75a5a46988792356f7d63cfa8cd3aa8c8ee9975"
+    },
+    "accompaniment.wav": {
+      "samples": 661500,
+      "sampleRate": 44100,
+      "sha256": "2f43eb353ab87a1f6a02ca9498f7b5c85ca382a9a1337882b3aa6d1330c188a8"
+    }
+  },
+  "sharedSourceSliceSamples": [
+    882000,
+    1543500
+  ],
+  "alignment": "Same source slice; sample grids equal. Musical/phonetic alignment not yet accepted.",
+  "detectedCandidateNotes": 33,
+  "bpmCandidate": 171.8181818181818,
+  "voicedConfidentCoverage": 0.45611702127659576,
+  "pitchGuideIsSinging": false,
+  "independentSingerRenders": 0,
+  "releaseReady": false
+}

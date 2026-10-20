@@ -1,0 +1,355 @@
+{
+  "status": "UNREVIEWED_CANDIDATE",
+  "melodyAccepted": false,
+  "lyricsAccepted": false,
+  "bpmCandidate": 171.8181818181818,
+  "beatSeconds": [
+    0.39909297052154197,
+    0.7482993197278912,
+    1.0875283446712019,
+    1.436734693877551,
+    1.7859410430839002,
+    2.1251700680272108,
+    2.4643990929705217,
+    2.8036281179138323,
+    3.1528344671201816,
+    3.5020408163265304,
+    3.8612244897959185,
+    4.190476190476191,
+    4.529705215419501,
+    4.888888888888889,
+    5.228117913832199,
+    5.56734693877551,
+    5.916553287981859,
+    6.265759637188209,
+    6.614965986394558,
+    6.954195011337869,
+    7.293424036281179,
+    7.642630385487529,
+    7.9918367346938775,
+    8.351020408163265,
+    8.680272108843537,
+    9.019501133786848,
+    9.368707482993198,
+    9.707936507936507,
+    10.057142857142857,
+    10.406349206349207,
+    10.745578231292518,
+    11.084807256235827,
+    11.434013605442177,
+    11.773242630385488,
+    12.122448979591837,
+    12.471655328798185,
+    12.810884353741496,
+    13.160090702947846,
+    13.509297052154196,
+    13.858503401360544,
+    14.177777777777777,
+    14.526984126984127,
+    14.886167800453515
+  ],
+  "notes": [
+    {
+      "start": 0.3991,
+      "end": 0.5587,
+      "midi": 50,
+      "confidence": 0.774,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 0.858,
+      "end": 1.0177,
+      "midi": 52,
+      "confidence": 0.861,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 1.1274,
+      "end": 1.2272,
+      "midi": 50,
+      "confidence": 0.755,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 3.1927,
+      "end": 3.3125,
+      "midi": 50,
+      "confidence": 0.763,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 3.3624,
+      "end": 3.4621,
+      "midi": 52,
+      "confidence": 0.764,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 3.522,
+      "end": 3.7016,
+      "midi": 55,
+      "confidence": 0.834,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 3.9311,
+      "end": 4.0408,
+      "midi": 59,
+      "confidence": 0.865,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 4.2005,
+      "end": 4.3002,
+      "midi": 58,
+      "confidence": 0.754,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 4.3002,
+      "end": 4.4499,
+      "midi": 59,
+      "confidence": 0.869,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 4.5796,
+      "end": 4.6694,
+      "midi": 58,
+      "confidence": 0.634,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 4.6694,
+      "end": 4.829,
+      "midi": 59,
+      "confidence": 0.82,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 4.829,
+      "end": 4.9787,
+      "midi": 58,
+      "confidence": 0.778,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 4.9787,
+      "end": 5.0884,
+      "midi": 59,
+      "confidence": 0.836,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 5.278,
+      "end": 5.6472,
+      "midi": 57,
+      "confidence": 0.908,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 5.8068,
+      "end": 5.9964,
+      "midi": 62,
+      "confidence": 0.894,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 6.166,
+      "end": 6.4354,
+      "midi": 54,
+      "confidence": 0.868,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 6.5052,
+      "end": 6.9642,
+      "midi": 55,
+      "confidence": 0.908,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 8.361,
+      "end": 8.4608,
+      "midi": 54,
+      "confidence": 0.757,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 8.4608,
+      "end": 8.8,
+      "midi": 55,
+      "confidence": 0.904,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 9.0395,
+      "end": 9.219,
+      "midi": 52,
+      "confidence": 0.828,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 9.2789,
+      "end": 9.4685,
+      "midi": 50,
+      "confidence": 0.837,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 9.6481,
+      "end": 10.0671,
+      "midi": 55,
+      "confidence": 0.933,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 10.0971,
+      "end": 10.1868,
+      "midi": 55,
+      "confidence": 0.557,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 10.4063,
+      "end": 10.4961,
+      "midi": 57,
+      "confidence": 0.671,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 10.5261,
+      "end": 10.6558,
+      "midi": 59,
+      "confidence": 0.877,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 10.7955,
+      "end": 11.2145,
+      "midi": 57,
+      "confidence": 0.907,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 11.2544,
+      "end": 11.424,
+      "midi": 55,
+      "confidence": 0.895,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 11.6934,
+      "end": 11.9528,
+      "midi": 54,
+      "confidence": 0.865,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 11.9528,
+      "end": 12.2222,
+      "midi": 55,
+      "confidence": 0.777,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 12.6712,
+      "end": 12.781,
+      "midi": 66,
+      "confidence": 0.643,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 13.8884,
+      "end": 14.068,
+      "midi": 50,
+      "confidence": 0.744,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 14.3474,
+      "end": 14.4372,
+      "midi": 59,
+      "confidence": 0.61,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    },
+    {
+      "start": 14.7964,
+      "end": 15.0,
+      "midi": 52,
+      "confidence": 0.84,
+      "lyric": null,
+      "phonemes": null,
+      "reviewed": false
+    }
+  ],
+  "limitations": [
+    "Pitch runs are not necessarily notes; repeated notes can merge, vibrato can split.",
+    "15-second tempo has half/double-time ambiguity; no inferred time signature.",
+    "No lyrics or syllable boundaries have been verified."
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "python": "3.12.14",
+  "cpuCount": 9,
+  "ramGiB": 9.7,
+  "gpuDetected": false,
+  "installed": {
+    "librosa": "1.0.0",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "soundfile": "0.14.0"
+  },
+  "testedSingerPairs": 0,
+  "maxSingerPairs": 2,
+  "qwenLaughRenders": 0,
+  "paidCalls": 0,
+  "isolatedRuntime": {
+    "torch": "2.11.0+cpu",
+    "torchaudio": "2.11.0+cpu",
+    "qwen-tts": "0.1.1"
+  }
+}

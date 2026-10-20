@@ -1,0 +1,14 @@
+{
+  "screenDate": "2026-10-20",
+  "qualifiedPairs": 0,
+  "renderedPairs": 0,
+  "renderLimit": 2,
+  "banks": [
+    {"name":"TIGER v106","source":"https://github.com/spicytigermeat/tiger_diffsinger","terms":"https://github.com/spicytigermeat/tiger_diffsinger/blob/main/LICENSE.md","characterTerms":"https://github.com/spicytigermeat/tiger_diffsinger/blob/main/character_usage_tos.md","license":"CC BY-NC-ND 4.0 plus Commons Clause; noncommercial use, credit and character rules","otherCharacterUseExplicit":true,"mandarinNaturalnessAccepted":false,"result":"candidate_only","reason":"Official releases remove Chinese voice mode in v102, add Mandarin dictionary in v103 but do not establish full Mandarin support or naturalness in v106. No local compatible package tested."},
+    {"name":"Lewy / Lewisia","source":"https://motoys2-utau.akira00utau.workers.dev/","terms":"https://motoys2-utau.akira00utau.workers.dev/terms-of-use/","result":"excluded_for_this_pair","reason":"Officially described as a soft young female voice, not the requested male bank. Terms restrict synthesis engines to UTAU/OpenUtau/UTAU-Synth and prohibit AI training on output. Do not substitute generic Python inference or clone outputs."},
+    {"name":"Denji DS","source":"https://denjiebisawa.creatorlink.net/","terms":"https://denjiebisawa.creatorlink.net/","result":"permission_unresolved","reason":"Mandarin support advertised. Terms require permission for derivatives and retention of character age/personality. No explicit clearance found for using voice as these distinct story characters; not treated as blanket free permission."},
+    {"name":"ACV-001","source":"https://github.com/Archivoice/ACV-001","license":"CC BY-SA 4.0, specified dataset/model scope","result":"dataset_not_ready_bank","reason":"Explicit credited native Mandarin male singing dataset, but reviewed official repository does not provide a ready tested acoustic/variance/vocoder package. No training run authorized or started."}
+  ],
+  "decision":"No verified ready pair in bounded screening. Stop singer renders; do not imply all open-source banks are unavailable.",
+  "audioRightsAccepted": false
+}

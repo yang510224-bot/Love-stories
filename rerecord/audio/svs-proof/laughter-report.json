@@ -1,0 +1,14 @@
+{
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+  "license": "Apache-2.0 (official model card)",
+  "status": "blocked_by_automatic_safety_review",
+  "outputs": [],
+  "characterMatchAccepted": false,
+  "naturalnessAccepted": false,
+  "priorFailure": "OSError: Could not load this library: /workspace/scratch/660fe756ca06/svs-env/lib/python3.12/site-packages/torchaudio/lib/_torchaudio.abi3.so",
+  "error": "Unsolicited Microsoft telemetry connection; payload and user authorization not established. Do not bypass.",
+  "runtimeRepair": {
+    "torch": "2.11.0+cpu",
+    "torchaudio": "2.11.0+cpu"
+  }
+}
